@@ -29,6 +29,20 @@ function App() {
     // update data at client site
     setTodos((preState) => [...preState, todo]);
   };
+
+  // delete Todo
+  let deleteTodo = (todoId) => {
+    // server site
+    fetch(`http://localhost:3001/todos/${todoId}`, {
+      method: "DELETE",
+    });
+    // client site
+    setTodos((preState) => {
+      return preState.filter((todo) => {
+        return todo.id !== todoId;
+      });
+    });
+  };
   return (
     <div className="todo-app-container">
       <div className="todo-app">
@@ -36,7 +50,7 @@ function App() {
         {/* TodoForm */}
         <TodoForm addTodo={addTodo} />
         {/* TodoList */}
-        <TodoList todos={todos} />
+        <TodoList todos={todos} deleteTodo={deleteTodo} />
         {/* TodoFliter */}
         <CheckAllAndRemaining />
         <div className="other-buttons-container">

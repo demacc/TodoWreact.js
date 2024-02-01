@@ -23,6 +23,7 @@ export default function TodoForm({ addTodo }) {
           type="text"
           className="todo-input"
           placeholder="What do you need to do?"
+          // two way data binary
           onChange={(e) => setTitle(e.target.value)}
           value={title}
         />
